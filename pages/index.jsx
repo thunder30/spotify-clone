@@ -1,3 +1,4 @@
+import { getSession } from 'next-auth/react'
 import Head from 'next/head'
 import Sidebar from '../components/Sidebar'
 
@@ -14,3 +15,11 @@ export default function Home() {
         </div>
     )
 }
+
+// export async function getServerSideProps(context) {
+//     return {
+//         props: {
+//             session: await getSession(context),
+//         },
+//     }
+// }

@@ -73,7 +73,7 @@ export default NextAuth({
         },
         async session({ session, token, user }) {
             // Send properties to the client, like an access_token from a provider.
-            session.user.accessToken = token.accesstoken
+            session.user.accessToken = token.accessToken
             session.user.refreshToken = token.refreshToken
             session.user.username = token.username
             session.error = token.error
