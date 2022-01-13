@@ -13,7 +13,6 @@ function Song({ order, track }) {
         console.log(track.track)
         setCurrentTrackId(track.track.id)
         setIsPlaying(true)
-
         spotifyApi
             .play({
                 uris: [track.track.uri],
