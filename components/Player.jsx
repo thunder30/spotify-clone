@@ -35,17 +35,19 @@ function Player() {
                     console.log('now playing: ', data.body)
                     setCurrentTrackId(data.body?.item?.id)
 
-                    spotifyApi
-                        .getMyCurrentPlaybackState()
-                        .then((data) => {
-                            console.log('Track State: ', data.body)
-                            setIsPlaying(data.body?.is_playing)
-                        })
-                        .catch((err) =>
-                            alert(`GetMyCurrentPlayingState -> `, err)
-                        )
+                    //     spotifyApi
+                    //         .getMyCurrentPlaybackState()
+                    //         .then((data) => {
+                    //             console.log('Track State: ', data.body)
+                    //             setIsPlaying(data.body?.is_playing)
+                    //         })
+                    //         .catch((err) =>
+                    //             console.log(`GetMyCurrentPlaybackState -> `, err)
+                    //         )
                 })
-                .catch((err) => alert(`GetMyCurrentPlayingTrack -> `, err))
+                .catch((err) =>
+                    console.log(`GetMyCurrentPlayingTrack -> `, err)
+                )
         }
     }
 
@@ -75,7 +77,7 @@ function Player() {
         if (spotifyApi.getAccessToken() && !currentTrackId) {
             // fetch song info
             fetchCurrentSong()
-            setVolume(50)
+            setVolume(90)
         }
     }, [currentTrackId, spotifyApi, session])
 
@@ -89,11 +91,13 @@ function Player() {
         <div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
             {/* Left */}
             <div className="flex items-center space-x-4">
-                <img
-                    className="hidden md:inline h-10 w-10"
-                    src={songInfo?.album.images[0]?.url}
-                    alt="image track"
-                />
+                {songInfo && (
+                    <img
+                        className="hidden md:inline h-10 w-10"
+                        src={songInfo?.album.images[0]?.url}
+                        alt=""
+                    />
+                )}
                 <div>
                     <h3>{songInfo?.name}</h3>
                     <p>{songInfo?.artists[0]?.name}</p>
