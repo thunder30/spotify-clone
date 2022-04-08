@@ -13,7 +13,7 @@ async function refreshAccessToken(token) {
         spotifyApi.setRefreshToken(token.refreshToken)
 
         const { body: refreshedToken } = await spotifyApi.refreshAccessToken()
-        console.log(`RefreshToken is: `, refreshedToken)
+        // console.log(`RefreshToken is: `, refreshedToken)
 
         return {
             ...token,
@@ -72,6 +72,8 @@ export default NextAuth({
             return await refreshAccessToken(token)
         },
         async session({ session, token, user }) {
+            // console.log('Token -> ', token)
+            // console.log('User -> ', user)
             // Send properties to the client, like an access_token from a provider.
             session.user.accessToken = token.accessToken
             session.user.refreshToken = token.refreshToken

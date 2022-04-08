@@ -6,6 +6,7 @@ const secret = process.env.JWT_SECRET
 export async function middleware(req) {
     // Token will exist if user is logged in
     const token = await getToken({ req, secret })
+    console.log(`${token ? 'Logged in' : 'Not logged in'}`)
 
     const { pathname } = req.nextUrl
     console.log(pathname)

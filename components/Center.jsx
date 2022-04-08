@@ -24,7 +24,7 @@ function Center() {
     const playlistId = useRecoilValue(playlistIdState)
     const [playlist, setPlaylist] = useRecoilState(playlistState)
 
-    console.log('Playlist - ', playlist)
+    // console.log('Playlist - ', playlist)
 
     useEffect(() => {
         setColor(shuffle(colors).pop())
