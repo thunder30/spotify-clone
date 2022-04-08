@@ -3,12 +3,14 @@ import { NextResponse } from 'next/server'
 
 const secret = process.env.JWT_SECRET
 
-export async function middleware(req) {
+export default async function middleware(req) {
     // Token will exist if user is logged in
-    console.log(`secret -> `, secret)
-    console.log(`process.env.JWT_SECRET -> `, process.env.JWT_SECRET)
     const token = await getToken({ req, secret })
-    console.log(`${token ? 'Logged in' : 'Not logged in'}`)
+    console.log('middleware log -> ', {
+        secret,
+        ['env.JWT_SECRET']: process.env.JWT_SECRET,
+        token,
+    })
 
     const { pathname } = req.nextUrl
     console.log(pathname)
